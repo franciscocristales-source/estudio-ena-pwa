@@ -137,7 +137,7 @@ export default function App() {
                       onClick={() => setActiveTab('practica')}
                       className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-lg font-medium shadow transition text-sm"
                     >
-                      Ir alos ejercicios prácticos →
+                      Ir a los ejercicios prácticos →
                     </button>
                   </div>
                 </div>
