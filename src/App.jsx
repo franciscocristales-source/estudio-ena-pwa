@@ -4,7 +4,7 @@ import MathText from './components/MathText';
 
 export default function App() {
   const [selectedTema, setSelectedTema] = useState(null);
-  const [activeTab, setActiveTab] = useState('teoria'); // 'teoria' o 'practica'
+  const [activeTab, setActiveTab] = useState('teoria');
   const [respuestasUsuario, setRespuestasUsuario] = useState({});
   const [resultadoQuiz, setResultadoQuiz] = useState(null);
 
@@ -38,7 +38,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col">
-      {/* Header */}
       <header className="bg-emerald-700 text-white shadow-md p-4 sticky top-0 z-10">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <h1 className="text-xl font-bold flex items-center gap-2">
@@ -55,7 +54,6 @@ export default function App() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="flex-1 max-w-4xl w-full mx-auto p-4 md:p-6">
         {!selectedTema ? (
           <div>
@@ -89,13 +87,11 @@ export default function App() {
           </div>
         ) : (
           <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-            {/* Tema Header */}
             <div className="bg-slate-900 text-white p-6">
               <span className="text-xs font-medium text-emerald-400 uppercase tracking-wide">Módulo {selectedTema.id}</span>
               <h2 className="text-2xl font-bold mt-1">{selectedTema.titulo}</h2>
               <p className="text-slate-300 text-sm mt-2">{selectedTema.descripcion}</p>
 
-              {/* Tabs */}
               <div className="flex gap-2 mt-6 border-b border-slate-800">
                 <button
                   onClick={() => setActiveTab('teoria')}
@@ -116,7 +112,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Tab Body */}
             <div className="p-6">
               {activeTab === 'teoria' ? (
                 <div className="space-y-6">
@@ -215,7 +210,6 @@ export default function App() {
         )}
       </main>
 
-      {/* Footer */}
       <footer className="text-center py-6 text-xs text-slate-400 border-t border-slate-200 mt-12">
         PWA Estudio Agronomía • Optimizada para repaso móvil y web
       </footer>
