@@ -1,186 +1,271 @@
-export default [
+// src/data/temasData.js
+
+export const temasData = [
+  // ==========================================
+  // MÓDULO 1: HOJAS DE CÁLCULO Y EXCEL PRÁCTICO
+  // ==========================================
   {
-    id: 1,
-    titulo: "Matemáticas Aplicadas y Dosificación Agronómica",
-    descripcion: "Cálculo preciso de áreas, volúmenes de riego por goteo/aspersión, conversiones de unidades y dosificación estequiométrica de fertilizantes.",
-    ilustracionIcono: "📐",
-    contenidoTeorico: "En agronomía, el cálculo exacto de insumos previene sobredosis tóxicas y déficits nutricionales. Las proporciones directas y reglas de tres permiten transformar concentraciones comerciales de fertilizantes (como Urea al 46% de N) a kilogramos reales por hectárea (ha).",
+    id: "excel-operaciones-basicas",
+    modulo: "Hojas de Cálculo y Excel",
+    titulo: "Operaciones Básicas y Referencias de Celdas",
+    descripcion: "Dominio de la sintaxis fundamental para suma, resta, multiplicación, división y referencias absolutas ($A$1).",
+    dificultad: "Principiante",
+    duracionEstimada: "25 min",
+    teoria: {
+      introduccion: "En Excel y Google Sheets, todas las fórmulas deben comenzar con el signo de igual (`=`). Las operaciones aritméticas se procesan siguiendo la jerarquía estándar: paréntesis `()`, exponenciación `^`, multiplicación `*` y división `/`, y finalmente suma `+` y resta `-`.",
+      conceptosClave: [
+        {
+          concepto: "Jerarquía de Operaciones",
+          detalle: "En `=A1 + B1 * C1`, primero se multiplica `B1*C1` y luego se suma `A1`. Para alterar este orden, usa paréntesis: `=(A1 + B1) * C1`."
+        },
+        {
+          concepto: "Referencias Relativas vs. Absolutas",
+          detalle: "Una referencia relativa (ej. `A1`) cambia al arrastrar la fórmula. Una referencia absoluta (ej. `$A$1`) permanece fijada en la fila y columna exactas."
+        }
+      ],
+      formulasClave: [
+        { nombre: "Suma Directa", formula: "=SUMA(A1:A10)", uso: "Suma un rango contiguo de celdas." },
+        { nombre: "Resta / Operaciones Combinadas", formula: "=A2 - B2", uso: "Resta de valores numéricos directos o referencias." },
+        { nombre: "Multiplicación y División", formula: "=A2 * B2 / C2", uso: "Cálculos de importes y coeficientes." }
+      ]
+    },
     ejemplos: [
-      "Fórmula de Dosificación: $\text{Kg de Fertilizante} = \frac{\text{Dosis requerida de nutriente}}{\text{% de concentración del nutriente}}$",
-      "Ejemplo práctico: Si se recomiendan 150 kg/ha de Nitrógeno y disponemos de Urea (46% N): $150 / 0.46 = 326.08 \text{ kg de urea/ha}$.",
-      "Cálculo de Volumen de Riego: Para una lámina de 40 mm en 1 hectárea ($10,000 \text{ m}^2$), el volumen es $10,000 \times 0.04 = 400 \text{ m}^3$ ($400,000 \text{ litros}$).",
-      "Conversión de pendientes: Una pendiente del 5% significa un desnivel vertical de 5 metros por cada 100 metros horizontales."
-    ],
-    preguntas: [
       {
-        pregunta: "Si un cultivo requiere 120 kg/ha de Nitrógeno y se utiliza Nitrato de Amonio (33% N), ¿cuántos kg de fertilizante comercial se deben aplicar por hectárea?",
-        opciones: [
-          "363.63 kg/ha",
-          "396.00 kg/ha",
-          "300.50 kg/ha",
-          "412.10 kg/ha"
-        ],
+        titulo: "Cálculo de Importes con Precio e Impuesto",
+        enunciado: "Se tiene la Cantidad en A2 (5 unidades), Precio Unitario en B2 ($12.50) y Tasa IVA en $F$1 (16%). Calcula el Total.",
+        pasos: [
+          "Paso 1: Multiplicar Cantidad por Precio Unitario: `=A2 * B2` (Subtotal = 62.50).",
+          "Paso 2: Aplicar el IVA fijando la celda con referencia absoluta: `=A2 * B2 * (1 + $F$1)`.",
+          "Resultado final: `$72.50`"
+        ]
+      }
+    ],
+    ejercicios: [
+      {
+        id: "ex-op-1",
+        pregunta: "Si en la celda A1 tienes el valor 2350, en B1 tienes 143 y en C1 tienes 963, ¿cuál es el resultado de la fórmula `=A1 - (B1 + C1)`?",
+        opciones: ["1244", "2107", "1430", "3456"],
         respuestaCorrecta: 0,
-        explicacionesOpciones: [
-          "¡Correcto! Se divide la dosis requerida entre la proporción decimal del nutriente: 120 / 0.33 = 363.63 kg.",
-          "Error común: Multiplicaste en lugar de dividir o usaste un porcentaje incorrecto.",
-          "Error común: Cálculo incompleto de la proporción decimal del fertilizante.",
-          "Error común: Error aritmético en la división de concentraciones."
-        ]
+        pista: "Primero realiza la suma dentro del paréntesis (143 + 963) y réstasela a 2350.",
+        explicacion: "B1 + C1 = 143 + 963 = 1106. Luego 2350 - 1106 = 1244."
       },
       {
-        pregunta: "¿Cuál es el volumen total de agua en litros correspondiente a una lámina de riego de 50 mm aplicada sobre un terreno de 2 hectáreas?",
-        opciones: [
-          "500,000 litros",
-          "1,000,000 litros",
-          "2,000,000 litros",
-          "10,000,000 litros"
-        ],
-        respuestaCorrecta: 1,
-        explicacionesOpciones: [
-          "Error común: Calculaste para una sola hectárea o convertiste mal los milímetros.",
-          "¡Excelente! 2 ha = 20,000 m². 50 mm = 0.05 m. Volumen = 20,000 * 0.05 = 1,000 m³. Como 1 m³ = 1,000 litros, el total es 1,000,000 litros.",
-          "Error común: Duplicaste el cálculo del volumen base por error de unidades.",
-          "Error común: Confusión grave en la conversión de metros cúbicos a litros."
-        ]
+        id: "ex-op-2",
+        pregunta: "¿Qué tipo de referencia debes usar para evitar que la celda de la tasa de descuento cambie al copiar la fórmula hacia abajo?",
+        opciones: ["Referencia Mixta (A$1)", "Referencia Relativa (A1)", "Referencia Absoluta ($A$1)", "Nombre de Rango Sin Signos"],
+        respuestaCorrecta: 2,
+        pista: "Requiere fijar tanto la columna como la fila con el símbolo del dólar.",
+        explicacion: "El símbolo '$' antes de la letra y del número ($A$1) inmoviliza por completo la celda."
       }
-    ]
-  },
-  {
-    id: 2,
-    titulo: "Botánica y Fisiología Vegetal Avanzada",
-    descripcion: "Anatomía de tejidos vasculares (xilema y floema), fotosíntesis (fases lumínica y oscura), transpiración y regulación estomática.",
-    ilustracionIcono: "🌿",
-    contenidoTeorico: "La fisiología vegetal rige la productividad de los cultivos. El xilema transporta agua y minerales brutos unidireccionalmente desde la raíz impulsado por la tensión-cohesión de la transpiración foliar. El floema transporta savia elaborada (azúcares y aminoácidos) bidireccionalmente desde las fuentes hacia los sumideros.",
-    ejemplos: [
-      "Fotosíntesis neta: $6CO_2 + 6H_2O + \text{Luz} \rightarrow C_6H_{12}O_6 + 6O_2$. Ocurre en cloroplastos.",
-      "Regulación estomática: Los iones de potasio ($K^+$) y el ácido abscísico controlan la apertura y cierre de las células oclusivas para evitar el estrés hídrico.",
-      "Fotoperiodismo: Plantas de día corto vs. día largo controlan su floración según la duración de la noche."
     ],
-    preguntas: [
+    examen: [
       {
-        pregunta: "¿Qué tejido vascular es el responsable principal del transporte de agua y sales minerales disueltas desde el sistema radical hasta el follaje?",
-        opciones: [
-          "El floema con savia elaborada",
-          "El xilema bajo tensión hídrica",
-          "El parénquima cortical de reserva",
-          "El colénquima de soporte mecánico"
-        ],
-        respuestaCorrecta: 1,
-        explicacionesOpciones: [
-          "Error común: Confundiste el transporte ascendente de agua (xilema) con el transporte de azúcares (floema).",
-          "¡Perfecto! El xilema transporta agua y minerales brutos de forma ascendente gracias a la transpiración.",
-          "Error común: El parénquima almacena sustancias pero no es el tejido conductor principal.",
-          "Error común: El colénquima otorga soporte estructural flexible, no conducción vascular."
-        ]
+        id: "q-excel-op-1",
+        pregunta: "En una hoja de cálculo, se requiere calcular el total de ventas diarias sumando el Pago en Contado (Columna B) y Pago con Tarjeta (Columna C). ¿Qué fórmula es la más óptima para la fila 6?",
+        opciones: ["=B6 + C6", "=SUMA(B6, C6)", "=PAGO(B6:C6)", "Las opciones A y B son válidas"],
+        respuestaCorrecta: 3,
+        explicacion: "Tanto el operador de suma `+` como la función `=SUMA()` ofrecen el resultado exacto."
       },
       {
-        pregunta: "¿Cuál es el subproducto gaseoso liberado a la atmósfera durante la fase dependiente de luz de la fotosíntesis?",
-        opciones: [
-          "Dióxido de carbono ($CO_2$)",
-          "Oxígeno molecular ($O_2$)",
-          "Nitrógeno atmosférico ($N_2$)",
-          "Monóxido de carbono ($CO$)"
-        ],
-        respuestaCorrecta: 1,
-        explicacionesOpciones: [
-          "Error común: El dióxido de carbono es consumido en el ciclo de Calvin (fase oscura), no liberado.",
-          "¡Correcto! La fotólisis del agua en los fotosistemas libera oxígeno molecular como subproducto.",
-          "Error común: El nitrógeno atmosférico no participa directamente en la fotólisis fotosintética.",
-          "Error común: El monóxido de carbono es un gas tóxico que no es producido por plantas sanas."
-        ]
-      }
-    ]
-  },
-  {
-    id: 3,
-    titulo: "Edafología, Química de Suelos y Nutrición",
-    descripcion: "Propiedades fisicoquímicas del suelo, triángulo textural, pH, Capacidad de Intercambio Catiónico (CIC) y macronutrientes N-P-K.",
-    ilustracionIcono: "🧪",
-    contenidoTeorico: "El suelo es un sistema coloidal vivo. El pH del suelo regula drásticamente la disponibilidad química de los nutrientes: valores menores a 5.5 provocan fijación de fósforo con aluminio/hierro y deficiencias severas. Los macronutrientes primarios son Nitrógeno (vegetativo), Fósforo (enraizamiento y energía ATP) y Potasio (regulación osmótica y llenado de frutos).",
-    ejemplos: [
-      "Textura del suelo: Proporciones porcentuales de arena, limo y arcilla determinadas por el triángulo textural USDA.",
-      "CIC (Capacidad de Intercambio Catiónico): Mide la cantidad de cationes intercambiables ($Ca^{2+}, Mg^{2+}, K^+, Na^+, H^+$) que el suelo puede retener.",
-      "Corrección de acidez: Aplicación de cal agrícola ($CaCO_3$) para elevar el pH y neutralizar aluminio intercambiable."
-    ],
-    preguntas: [
-      {
-        pregunta: "¿Qué función fisiológica principal cumple el Fósforo (P) en las plantas cultivadas?",
-        opciones: [
-          "Estimular únicamente el crecimiento de tallos y hojas verdes",
-          "Favorecer el desarrollo radicular profundo, la transferencia de energía (ATP) y la floración",
-          "Mejorar exclusivamente la apertura estomática y la resistencia a heladas",
-          "Formar parte directa de la estructura de la clorofila"
-        ],
-        respuestaCorrecta: 1,
-        explicacionesOpciones: [
-          "Error común: Esa es la función característica del Nitrógeno (N), no del fósforo.",
-          "¡Exacto! El fósforo es clave en el almacenamiento y transferencia de energía (ATP), desarrollo de raíces y reproducción.",
-          "Error común: Esa es la función principal del Potasio (K).",
-          "Error común: El elemento central de la molécula de clorofila es el Magnesio (Mg)."
-        ]
-      },
-      {
-        pregunta: "¿Qué consecuencia directa provoca un suelo excesivamente ácido con un pH menor a 5.0 en la disponibilidad de nutrientes?",
-        opciones: [
-          "Alta disponibilidad y toxicidad por aluminio y fijación de fósforo",
-          "Aumento exponencial de la disponibilidad de calcio y magnesio libre",
-          "Inactivación total de los microorganismos benéficos fijadores de carbono",
-          "Neutralización automática de la salinidad del agua de riego"
-        ],
+        id: "q-excel-op-2",
+        pregunta: "Si divides 49 entre 9 en Excel usando `=ROUND(49/9, 2)` u `=ENTERO(49/9)`, ¿cuál es la parte entera?",
+        opciones: ["5", "6", "5.44", "5.45"],
         respuestaCorrecta: 0,
-        explicacionesOpciones: [
-          "¡Correcto! En suelos ácidos, el aluminio soluble se vuelve tóxico para las raíces y el fósforo reacciona formando fosfatos insolubles.",
-          "Error común: Con pH ácido, el calcio y magnesio suelen lavarse (lixiviarse) con facilidad.",
-          "Error común: Aunque afecta a algunos microbios, la consecuencia directa más grave es la toxicidad por aluminio y fijación de fósforo.",
-          "Error común: La acidez del suelo no neutraliza por sí misma la salinidad."
-        ]
+        explicacion: "49 / 9 = 5.4444... La parte entera es 5."
       }
     ]
   },
   {
-    id: 4,
-    titulo: "Fitoprotección, Patología y Manejo Integrado (MIP)",
-    descripcion: "Diagnóstico de plagas insectiles, enfermedades fúngicas/bacterianas, malezas y estrategias de Manejo Integrado de Plagas.",
-    ilustracionIcono: "🛡️",
-    contenidoTeorico: "El Manejo Integrado de Plagas (MIP) optimiza métodos biológicos, culturales, físicos y químicos para mantener las poblaciones nocivas por debajo del Umbral de Daño Económico (UDE). La rotación de cultivos interrumpe ciclos biológicos de patógenos específicos.",
+    id: "excel-densidad-crecimiento",
+    modulo: "Hojas de Cálculo y Excel",
+    titulo: "Cálculo de Densidades y Tasas de Crecimiento Natural",
+    descripcion: "Aplicación de fórmulas estadísticas y demográficas: Densidad de Población y Tasa de Crecimiento Natural.",
+    dificultad: "Intermedio",
+    duracionEstimada: "30 min",
+    teoria: {
+      introduccion: "Las hojas de cálculo son la herramienta estándar para procesar indicadores demográficos y territoriales masivos. En este tema se estudian las fórmulas empleadas en análisis geográficos y financieros.",
+      conceptosClave: [
+        {
+          concepto: "Densidad Poblacional",
+          detalle: "Mide el número medio de habitantes por unidad de superficie. Fórmula: `Densidad = Habitantes / Superficie(km²)`."
+        },
+        {
+          concepto: "Tasa de Crecimiento Natural (TCN)",
+          detalle: "Representa el balance entre nacimientos y defunciones en un periodo. Fórmula: `TCN = Tasa de Nacimiento - Tasa de Mortalidad`."
+        }
+      ],
+      formulasClave: [
+        { nombre: "Densidad de Población", formula: "= B5 / C5", uso: "Donde B5 = Habitantes y C5 = Superficie km²." },
+        { nombre: "Crecimiento Natural", formula: "= B5 - B6", uso: "Donde B5 = Tasa Nacimiento y B6 = Tasa Mortalidad." }
+      ]
+    },
     ejemplos: [
-      "Control Biológico: Liberación de parasitoides como *Trichogramma pretiosum* para controlar huevos de lepidópteros plaga.",
-      "Enfermedades Fúngicas: El mildiu y el tizón tardío (*Phytophthora infestans*) prosperan en condiciones de alta humedad relativa y temperaturas moderadas.",
-      "Umbral Económico: Nivel de población de plaga donde el costo del control es igual al valor del daño evitado."
-    ],
-    preguntas: [
       {
-        pregunta: "¿Qué define el concepto de Umbral de Daño Económico (UDE) en un programa de Manejo Integrado de Plagas?",
-        opciones: [
-          "El momento en que la plaga causa la muerte del 100% de la plantación",
-          "La densidad poblacional de plaga donde el costo económico del control iguala las pérdidas causadas por el daño",
-          "El límite máximo de plaguicida permitido por las normativas de exportación",
-          "El número de insectos benéficos requeridos para erradicar una plaga"
-        ],
-        respuestaCorrecta: 1,
-        explicacionesOpciones: [
-          "Error común: Esperar la muerte total de la plantación genera pérdidas irreversibles; el UDE se aplica antes.",
-          "¡Excelente definición! El UDE marca el punto exacto donde la intervención de control financiero se justifica.",
-          "Error común: Eso corresponde a límites máximos de residuos (LMR), no al umbral de daño de plagas.",
-          "Error común: Los benéficos actúan en el control biológico, pero el UDE mide el impacto financiero del daño."
+        titulo: "Cálculo de Densidad de la Ciudad de Monterrey",
+        enunciado: "Población: 3,740,000 habitantes. Superficie: 380.64 km². Calcula la densidad hab/km².",
+        pasos: [
+          "Fórmula en Excel: `= 3740000 / 380.64`",
+          "Resultado obtenido: `9,825.55` hab/km² (Aproximado a `9,826`)."
         ]
+      }
+    ],
+    ejercicios: [
+      {
+        id: "ex-dens-1",
+        pregunta: "Si una provincia tiene 1,821,517 habitantes y una superficie de 154 km², ¿cuál es su densidad aproximada hab/km²?",
+        opciones: ["11,828 hab/km²", "8,450 hab/km²", "14,200 hab/km²", "9,850 hab/km²"],
+        respuestaCorrecta: 0,
+        pista: "Divide el número total de habitantes entre los km² de superficie.",
+        explicacion: "1,821,517 / 154 = 11,828.03 hab/km²."
       },
       {
-        pregunta: "¿Cuál es una práctica cultural altamente efectiva para romper el ciclo biológico de patógenos específicos del suelo en una parcela agrícola?",
-        opciones: [
-          "Aplicación intensiva anual del mismo fungicida sistémico",
-          "La rotación de cultivos con familias botánicas no emparentadas",
-          "Eliminación total de toda la materia orgánica y microorganismos del suelo",
-          "Aumento desproporcionado del riego por inundación continua"
-        ],
-        respuestaCorrecta: 1,
-        explicacionesOpciones: [
-          "Error común: El uso continuo del mismo plaguicida genera resistencia genética acelerada en patógenos.",
-          "¡Correcto! Rotar cultivos de diferentes familias (ej. gramíneas con solanáceas) priva al patógeno específico de su huésped natural.",
-          "Error común: Esterilizar el suelo destruye la microflora benéfica y degrada la fertilidad edáfica.",
-          "Error común: El exceso de riego favorece enfermedades radiculares como *Phytophthora* y *Pythium*."
+        id: "ex-dens-2",
+        pregunta: "En 2011, la Tasa de Nacimiento fue de 17.49 y la Tasa de Mortalidad fue de 5.26. ¿Cuál fue la Tasa de Crecimiento Natural?",
+        opciones: ["12.23", "22.75", "3.32", "11.85"],
+        respuestaCorrecta: 0,
+        pista: "Resta la tasa de mortalidad a la tasa de nacimiento.",
+        explicacion: "17.49 - 5.26 = 12.23."
+      }
+    ],
+    examen: [
+      {
+        id: "q-excel-dens-1",
+        pregunta: "Una región presenta 800,000 habitantes y 702 km² de superficie. ¿Qué densidad hab/km² le corresponde?",
+        opciones: ["1,140 hab/km²", "1,280 hab/km²", "950 hab/km²", "1,500 hab/km²"],
+        respuestaCorrecta: 0,
+        explicacion: "800,000 / 702 = 1,139.60, redondeado a 1,140."
+      }
+    ]
+  },
+
+  // ==========================================
+  // MÓDULO 2: ÁLGEBRA Y ECUACIONES
+  // ==========================================
+  {
+    id: "algebra-ecuaciones-lineales",
+    modulo: "Álgebra y Operaciones",
+    titulo: "Ecuaciones Lineales y Sistemas de Ecuaciones",
+    descripcion: "Resolución sistemática de ecuaciones de primer grado y métodos de solución para sistemas 2x2.",
+    dificultad: "Principiante",
+    duracionEstimada: "35 min",
+    teoria: {
+      introduccion: "Una ecuación lineal es una igualdad algebraica donde la variable tiene exponente 1. El objetivo es despejar la incógnita aplicando operaciones inversas en ambos miembros de la ecuación.",
+      conceptosClave: [
+        {
+          concepto: "Propiedad de Uniformidad",
+          detalle: "Si sumas, restas, multiplicas o divides el mismo valor en ambos lados de la igualdad, la solución no varía."
+        },
+        {
+          concepto: "Sistemas de Ecuaciones 2x2",
+          detalle: "Conjunto de dos ecuaciones con dos incógnitas. Métodos principales: Sustitución, Reducción (Eliminación) e Igualación."
+        }
+      ],
+      formulasClave: [
+        { nombre: "Forma General Lineal", formula: "ax + b = 0", uso: "Solución general: x = -b / a (con a ≠ 0)." },
+        { nombre: "Método de Reducción", formula: "a1x + b1y = c1;  a2x + b2y = c2", uso: "Se multiplican las ecuaciones para eliminar una variable al sumar." }
+      ]
+    },
+    ejemplos: [
+      {
+        titulo: "Resolución de Sistema 2x2 por Reducción",
+        enunciado: "Resolver: 1) 2x + 3y = 13 | 2) x - y = 4",
+        pasos: [
+          "Paso 1: Multiplicar la segunda ecuación por 3: 3x - 3y = 12.",
+          "Paso 2: Sumar con la primera ecuación: (2x + 3x) + (3y - 3y) = 13 + 12 => 5x = 25 => x = 5.",
+          "Paso 3: Sustituir x = 5 en la segunda ecuación: 5 - y = 4 => y = 1.",
+          "Solución final: x = 5, y = 1."
         ]
+      }
+    ],
+    ejercicios: [
+      {
+        id: "ex-alg-1",
+        pregunta: "Resuelve para x: 4x - 7 = 2x + 9",
+        opciones: ["x = 8", "x = 4", "x = 2", "x = 16"],
+        respuestaCorrecta: 0,
+        pista: "Agrupa los términos con 'x' a la izquierda y los números a la derecha.",
+        explicacion: "4x - 2x = 9 + 7 => 2x = 16 => x = 8."
+      },
+      {
+        id: "ex-alg-2",
+        pregunta: "En el sistema: x + y = 10 y x - y = 4, ¿cuál es el valor de x?",
+        opciones: ["x = 7", "x = 3", "x = 6", "x = 8"],
+        respuestaCorrecta: 0,
+        pista: "Suma ambas ecuaciones para eliminar la variable y.",
+        explicacion: "(x + y) + (x - y) = 10 + 4 => 2x = 14 => x = 7."
+      }
+    ],
+    examen: [
+      {
+        id: "q-alg-1",
+        pregunta: "Determina el valor de x que satisface: 3(x - 2) + 5 = 20",
+        opciones: ["x = 7", "x = 5", "x = 9", "x = 3"],
+        respuestaCorrecta: 0,
+        explicacion: "3x - 6 + 5 = 20 => 3x - 1 = 20 => 3x = 21 => x = 7."
+      }
+    ]
+  },
+
+  // ==========================================
+  // MÓDULO 3: ESTADÍSTICA Y PROBABILIDAD
+  // ==========================================
+  {
+    id: "estadistica-descriptiva",
+    modulo: "Estadística y Probabilidad",
+    titulo: "Medidas de Tendencia Central y Dispersión",
+    descripcion: "Análisis cualitativo y cuantitativo de datos: Media, Mediana, Moda, Varianza y Desviación Estándar.",
+    dificultad: "Intermedio",
+    duracionEstimada: "40 min",
+    teoria: {
+      introduccion: "La estadística descriptiva permite resumir conjuntos de datos mediante indicadores numéricos que representan el centro y la dispersión de las observaciones.",
+      conceptosClave: [
+        {
+          concepto: "Media Aritmética (Promedio)",
+          detalle: "Suma de todos los valores dividida entre el número total de datos."
+        },
+        {
+          concepto: "Mediana",
+          detalle: "Valor central cuando los datos están ordenados de menor a mayor. Si N es par, es el promedio de los dos datos centrales."
+        },
+        {
+          concepto: "Desviación Estándar",
+          detalle: "Indica cuánto se alejan los datos en promedio con respecto a la media aritmética."
+        }
+      ],
+      formulasClave: [
+        { nombre: "Media Aritmética", formula: "x̄ = (∑ xi) / n", uso: "Cálculo del promedio numérico." },
+        { nombre: "Varianza Muestral", formula: "s² = ∑ (xi - x̄)² / (n - 1)", uso: "Medición del grado de dispersión al cuadrado." }
+      ]
+    },
+    ejemplos: [
+      {
+        titulo: "Cálculo de Media y Mediana",
+        enunciado: "Conjunto de datos: [4, 8, 3, 7, 8, 10, 2]",
+        pasos: [
+          "Paso 1: Ordenar los datos: [2, 3, 4, 7, 8, 8, 10] (n = 7).",
+          "Paso 2: Calcular la Media: (2+3+4+7+8+8+10)/7 = 42/7 = 6.",
+          "Paso 3: Calcular la Mediana: El elemento central (posición 4) es 7.",
+          "Paso 4: La Moda es 8 (se repite dos veces)."
+        ]
+      }
+    ],
+    ejercicios: [
+      {
+        id: "ex-est-1",
+        pregunta: "En la lista de calificaciones [85, 90, 75, 95, 100], ¿cuál es la Media aritmética?",
+        opciones: ["89", "90", "88", "92"],
+        respuestaCorrecta: 0,
+        pista: "Suma los 5 valores y divide entre 5.",
+        explicacion: "(85 + 90 + 75 + 95 + 100) / 5 = 445 / 5 = 89."
+      }
+    ],
+    examen: [
+      {
+        id: "q-est-1",
+        pregunta: "Si la varianza de una muestra es 16, ¿cuál es la desviación estándar?",
+        opciones: ["4", "8", "256", "2"],
+        respuestaCorrecta: 0,
+        explicacion: "La desviación estándar es la raíz cuadrada positiva de la varianza: √16 = 4."
       }
     ]
   }
